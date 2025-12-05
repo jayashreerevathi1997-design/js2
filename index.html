@@ -1,17 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Student Names Array</title>
 </head>
 <body>
-    <script>
 
-    let user=sessionStorage.setItem("username","john_doe");
+   <section id="students-demo">
+    <h1>Array of Student Names</h1>
+    <button onclick="showStudents()">Show Students</button>
+    <p id="students-result"></p>
+  </section>
+
+  <script>
+    // Create an array of 5 student names
+    const students = ["Ananya", "Rahul", "Priya", "Karthik", "Sneha"];
+
+    // Function to show result in document
+    function showStudents() {
+      document.getElementById("students-result").textContent =
+        "Student Names: " + students.join(", ");
+    }
+  </script>
+ <section id="students-push-demo">
+    <h1>Add a New Student</h1>
+    <button onclick="addStudent()">Add Student</button>
+    <p id="students-result"></p>
+  </section>
+   <input type="text" id="studentName" placeholder="Enter student name">
+    <button onclick="addStudent()">Add Student</button>
+    <button onclick="removeStudent()">Remove Last Student</button>
+    <p id="result"></p>
+ 
+    <script>
+        // Create an array of students
+        let students = ["Alice", "Bob", "Charlie"];
+
+        function addStudent() {
+            // Get the input element using document.getElementById
+            let input = document.getElementById('studentName');
+            
+            // Get the value from input
+            let newStudent = input.value;
+            
+            // Add new student using push()
+            students.push(newStudent);
+            
+            // Display the updated array
+            document.getElementById('result').innerHTML = "Students: " + students.join(", ");
+            
+            // Clear input
+            input.value = "";
+        }
+
+        function removeStudent() {
+            // Remove the last student using pop()
+            let removedStudent = students.pop();
+            
+            // Display the updated array
+            document.getElementById('result').innerHTML = "Students: " + students.join(", ") + "<br>Removed: " + removedStudent;
+        }
+    </script>  -->
+ 
+  <section id="uppercase-demo">
+    <h1>Convert Student Names to Uppercase</h1>
+    <button onclick="showUppercaseNames()">Convert</button>
+    <ul id="uppercase-list"></ul>
+  </section>
+
+  <script>
+    // Initial array of student names
+    const students = ["Ananya", "Rahul", "Priya", "Karthik", "Sneha"];
+
+    // Function to convert all names to uppercase using map()
+    function toUppercaseNames(arr) {
+      return arr.map(name => name.toUpperCase());
+    }
+
+    // Function to show result in document
+    function showUppercaseNames() {
+      const uppercased = toUppercaseNames(students);
+      const list = document.getElementById("uppercase-list");
+      list.innerHTML = ""; // clear previous output
+
+      uppercased.forEach(name => {
+        const li = document.createElement("li");
+        li.textContent = name;
+        list.appendChild(li);
+      });
+    }
+  </script>
+  <section id="filter-demo">
+    <h1>Filter Student Names (Start with "A")</h1>
+    <button onclick="showFilteredStudents()">Filter</button>
+    <ul id="filter-list"></ul>
+  </section>
+
+  <script>
+    // Initial array of student names
+    const students = ["Ananya", "Rahul", "Priya", "Arjun", "Sneha", "Aditi"];
+
+    // Function to filter names starting with "A"
+    function filterNamesStartingWithA(arr) {
+      return arr.filter(name => name.startsWith("A"));
+    }
+
+    // Function to show result in document
+    function showFilteredStudents() {
+      const filtered = filterNamesStartingWithA(students);
+      const list = document.getElementById("filter-list");
+      list.innerHTML = ""; // clear previous output
+ if (filtered.length > 0) {
+        filtered.forEach(name => {
+          const li = document.createElement("li");
+          li.textContent = name;
+          list.appendChild(li);
+        });
+      } else {
+        const li = document.createElement("li");
+        li.textContent = "No student names start with 'A'.";
+        list.appendChild(li);
+      }
+    }
+  </script>
+  <section id="foreach-demo">
+    <h1>Print Each Student Name using forEach()</h1>
+    <button onclick="showStudents()">Show Students</button>
+    <ul id="students-list"></ul>
+  </section>
+
+  <script>
+    // Initial array of student names
+    const students = ["Ananya", "Rahul", "Priya", "Karthik", "Sneha"];
+
+    // Function to print each student name using forEach()
+    function showStudents() {
+      const list = document.getElementById("students-list");
+      list.innerHTML = ""; // clear previous output
+
+      students.forEach((name, index) => {
+        const li = document.createElement("li");
+        li.textContent = (index + 1) + ". " + name; // print with index
+        list.appendChild(li);
+      });
+    } 
+  <!--  </script>
+<section id="book-demo">
+    <h1>Book Object Example</h1>
+    <button onclick="showBook()">Show Book</button>
+    <p id="book-result"></p>
+  </section>
+
+  <script>
+    // Create a book object
+    const book = {
+      title: "JavaScript Essentials",
+      author: "John Doe",
+      price: 499
+    };
+
+    // Function to show book details in document
+    function showBook() {
+      document.getElementById("book-result").textContent =
+        "Title: " + book.title +
+        " | Author: " + book.author +
+        " | Price: ₹" + book.price;
+    }
+  </script>
+  <section id="book-demo">
+    <h1>Book Object Example</h1>
+    <button onclick="showBook()">Show Book</button>
+    <p id="book-result"></p>
+  </section>
+
+  <script>
+    // Create a book object
+    const book = {
+      title: "JavaScript Essentials",
+      author: "John Doe",
+      price: 499
+    };
+
+    // Function to show book details in document
+    function showBook() {
+      document.getElementById("book-result").textContent =
+        "Title: " + book.title +
+        " | Author: " + book.author +
+        " | Price: ₹" + book.price;
+    }
+  </script> 
+<section id="book-keys-demo">
+    <h1>Get Book Properties using Object.keys()</h1>
+    <button onclick="showBookKeys()">Show Properties</button>
+    <p id="book-result"></p>
+  </section>
+
+  <script>
+    // Create a book object
+    const book = {
+      title: "JavaScript Essentials",
+      author: "John Doe",
+      price: 499
+    };
+
+    // Function to get all keys using Object.keys()
+    function showBookKeys() {
+      const keys = Object.keys(book); // returns an array of property names
+      document.getElementById("book-result").textContent =
+        "Book Properties: " + keys.join(", ");
+    }
+  </script>
+ 
+   <section id="book-values-demo">
+    <h1>Get Book Values using Object.values()</h1>
+    <button onclick="showBookValues()">Show Values</button>
+    <p id="book-result"></p>
+  </section>
+
+  <script>
+    // Create a book object
+    const book = {
+      title: "JavaScript Essentials",
+      author: "John Doe",
+      price: 499
+    };
+
+    // Function to get all values using Object.values()
+    function showBookValues() {
+      const values = Object.values(book); // returns an array of property values
+      document.getElementById("book-result").textContent =
+        "Book Values: " + values.join(", ");
+    }
+  </script>
+     <section id="book-genre-demo">
+    <h1>Add Genre Property to Book Object</h1>
+    <button onclick="addGenre()">Add Genre</button>
+    <p id="book-result"></p>
+  </section>
+
+  <script>
+    // Initial book object
+    const book = {
+      title: "JavaScript Essentials",
+      author: "John Doe",
+      price: 499
+    };
+
+    // Function to add a new property 'genre'
+    function addGenre() {
+      book.genre = "Programming"; // add new property
+      document.getElementById("book-result").textContent =
+        "Title: " + book.title +
+        " | Author: " + book.author +
+        " | Price: ₹" + book.price +
+        " | Genre: " + book.genre;
+    }
+  </script> 
+  <section id="book-delete-demo">
+    <h1>Remove Price Property using delete</h1>
+    <button onclick="removePrice()">Remove Price</button>
+    <p id="book-result"></p>
+  </section>
+
+  <script>
+    // Initial book object
+    const book = {
+      title: "JavaScript Essentials",
+      author: "John Doe",
+      price: 499,
+      genre: "Programming"
+    };
+
+    // Function to delete the 'price' property
+    function removePrice() {
+      delete book.price; // removes the property
+      document.getElementById("book-result").textContent =
+        "Title: " + book.title +
+        " | Author: " + book.author +
+        " | Genre: " + book.genre +
+        " | Price: " + (book.price ?? "Removed");
+    }
+  </script> 
+ <section id="merge-demo">
+    <h1>Merge Publisher into Book Object</h1>
+    <button onclick="mergePublisher()">Merge Publisher</button>
+    <p id="book-result"></p>
+  </section>
+
+  <script>
+    // Initial book object
+    const book = {
+      title: "JavaScript Essentials",
+      author: "John Doe",
+      price: 499,
+      genre: "Programming"
+    };
+
+    // Publisher object
+    const publisher = {
+      name: "TechBooks Publishing",
+      location: "Chennai"
+    };
+
+    // Function to merge publisher into book
+    function mergePublisher() {
+      // Option 1: Using Object.assign()
+      Object.assign(book, publisher);
+
+      // Option 2: Using spread operator (creates a new merged object)
+      // const mergedBook = { ...book, ...publisher };
+
+      document.getElementById("book-result").textContent =
+        "Title: " + book.title +
+        " | Author: " + book.author +
+ " | Genre: " + book.genre +
+        " | Price: ₹" + book.price +
+        " | Publisher: " + book.name +
+        " | Location: " + book.location;
+    }
+  </script> 
+
+  <section id="book-entries-demo">
+    <h1>Convert Book Object into Key-Value Pairs</h1>
+    <button onclick="showBookEntries()">Show Entries</button>
+    <ul id="book-result"></ul>
+  </section>
+
+  <script>
+    // Initial book object
+    const book = {
+      title: "JavaScript Essentials",
+      author: "John Doe",
+      price: 499,
+      genre: "Programming",
+      publisher: "TechBooks Publishing"
+    };
+
+    // Function to convert object into key-value pairs using Object.entries()
+    function showBookEntries() {
+      const entries = Object.entries(book); // returns array of [key, value] pairs
+      const list = document.getElementById("book-result");
+      list.innerHTML = ""; // clear previous output
+
+      entries.forEach(([key, value]) => {
+        const li = document.createElement("li");
+        li.textContent = key + ": " + value;
+        list.appendChild(li);
+      });
+    }
+  </script> 
+<section id="odd-numbers-demo">
+    <h1>Filter Odd Numbers using filter()</h1>
+    <button onclick="showOddNumbers()">Show Odd Numbers</button>
+    <p id="result"></p>
+  </section>
+
+  <script>
+    // Create an array of 10 numbers
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    // Function to filter odd numbers
+    function showOddNumbers() {
+      const oddNumbers = numbers.filter(num => num % 2 !== 0);
+      document.getElementById("result").textContent =
+        "Odd Numbers: " + oddNumbers.join(", ");
+    }
+  </script> 
+<section id="sort-demo">
+    <h1>Sort Student Scores (Descending)</h1>
+    <button onclick="sortScores()">Sort Scores</button>
+    <p id="result"></p>
+  </section>
+
+  <script>
+    // Array of student scores
+    const scores = [85, 72, 93, 60, 77, 88, 95, 68, 81, 74];
+
+    // Function to sort scores in descending order
+    function sortScores() {
+      const sortedScores = scores.sort((a, b) => b - a); // descending
+      document.getElementById("result").textContent =
+        "Sorted Scores (Descending): " + sortedScores.join(", ");
+    }
+  </script>
+
+
+
+
+ 
+  
+  
+
+
+
     
-    let pass=sessionStorage.getItem("username");
-    console.log("user");
-   </script> 
 </body>
 </html>
